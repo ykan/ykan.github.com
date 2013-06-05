@@ -1,0 +1,17 @@
+{
+  "name": "ykan",
+  "version": "0.0.1",
+  "description": "yukan's main page",
+  "main": "main",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ykan/ykan.github.com.git"
+  },
+  "keywords": [
+    "ykan"
+  ],
+  "author": "ykan",
+  "license": "MIT",
+  "readmeFilename": "readme.md",
+  "gitHead": "8d7db8f3b2d470166f239fc1f634c1c8091e111c"
+}
