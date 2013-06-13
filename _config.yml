@@ -1,4 +1,4 @@
-name: Your New Jekyll Site
+name: ykan's world
 pygments: true
 
-destination: _mysite
+exclude: [readme.md]
