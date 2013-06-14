@@ -1,5 +1,4 @@
 name: ykan's world
 pygments: true
 
-source: _blog
 exclude: [readme.md]
