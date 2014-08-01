@@ -42,7 +42,7 @@ blockquote p {
 
 
 /*覆盖bootstarp的样式*/
-.comment-container,
-.share-container{
+.comment-container *,
+.share-container *{
     box-sizing: content-box;
 }
