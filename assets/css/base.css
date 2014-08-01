@@ -39,3 +39,10 @@ blockquote p {
     margin-bottom: 0;
     font-style: italic;
 }
+
+
+/*覆盖bootstarp的样式*/
+.comment-container,
+.share-container{
+    box-sizing: content-box;
+}
