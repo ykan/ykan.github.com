@@ -4,14 +4,20 @@
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="/assets/css/base.css"/>
 </head>
 <body>
 {% include header.html %}
 <div class="container">
     <div class="row">
-        <div class="span3">
+        <div class="col-md-9">
+            <div class="content">
+                {{ content }}
+            </div>
+            {% include share.html %}
+            {% include comment.html %}
+        </div>
+        <div class="col-md-3">
             <ul class="nav nav-tabs nav-stacked">
                 {% for post in site.posts %}
                 <li class="post-{{ post.category }}">
@@ -19,13 +25,6 @@
                 </li>
                 {% endfor %}
             </ul>
-        </div>
-        <div class="span9">
-            <div class="content">
-                {{ content }}
-            </div>
-            {% include share.html %}
-            {% include comment.html %}
         </div>
     </div>
 </div>
