@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/assets/css/base.css"/>
-    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/assets/js/default.js"></script>
     <title>{{ page.title }}</title>
 </head>
 <body>
 {% include header.html %}
-<div class="container">
+<div class="container default-page">
     <div class="row">
         <div class="col-md-9">
             <h3>最近文章列表</h3>
@@ -21,6 +19,7 @@
                 </div>
                 <div class="panel-footer">
                     <span class="label label-info">{{ posts[0].category }}</span>
+                    <a class="more-link" href="/blog.html#page={{ posts[0].url }}">查看详细内容>></a>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -29,6 +28,7 @@
                 </div>
                 <div class="panel-footer">
                     <span class="label label-info">{{ posts[1].category }}</span>
+                    <a class="more-link" href="/blog.html#page={{ posts[1].url }}">查看详细内容>></a>
                 </div>
             </div>
         </div>

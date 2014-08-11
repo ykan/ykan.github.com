@@ -58,5 +58,11 @@ blockquote p {
 .content-page{
     width: 100%;
     overflow: hidden;
-
+}
+.default-page .panel .panel-footer{
+    position: relative;
+}
+.default-page .panel .more-link{
+    position: absolute;
+    right: 10px;
 }
