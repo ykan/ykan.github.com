@@ -5,6 +5,8 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/assets/css/base.css"/>
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/blog.js"></script>
 </head>
 <body>
 {% include header.html %}
@@ -12,7 +14,7 @@
     <div class="row">
         <div class="col-md-9">
             <div class="content">
-                {{ content }}
+                <iframe src="" frameborder="0" id="J_contentIframe"></iframe>
             </div>
             {% include share.html %}
             {% include comment.html %}
@@ -21,7 +23,7 @@
             <ul class="nav nav-tabs nav-stacked">
                 {% for post in site.posts %}
                 <li class="post-{{ post.category }}">
-                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <a href="javacript:;" class="J_contentNavItem" data-url="{{ post.url }}">{{ post.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
