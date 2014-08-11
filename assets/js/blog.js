@@ -1,9 +1,10 @@
-(function(){
+(function(undef){
     $(document).ready(function(){
         var iframe = $("#J_contentIframe"),
             iframSrc,
-            urlhash = location.hash;
-        iframSrc = urlhash.match(/page=([^&]*html)/)[1] || $('.J_contentNavItem:first').attr('data-url');
+            urlhash = location.hash,
+            pageArr = urlhash.match(/page=([^&]*html)/);
+        iframSrc = pageArr ? pageArr[1]: undef || $('.J_contentNavItem:first').attr('data-url');
         iframe.attr('src', iframSrc);
 
         $('.J_contentNavItem').on('click', function(e){
