@@ -46,3 +46,17 @@ blockquote p {
 .share-container *{
     box-sizing: content-box;
 }
+
+.content-iframe,
+.panel-iframe{
+    width: 100%;
+}
+.panel-iframe{
+    overflow: hidden;
+}
+
+.content-page{
+    width: 100%;
+    overflow: hidden;
+
+}

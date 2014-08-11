@@ -15,7 +15,7 @@
             {% assign posts = site.posts %}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <iframe src="{{ posts[0].url }}" frameborder="0"></iframe>
+                    <iframe class="panel-iframe" src="{{ posts[0].url }}" frameborder="0"></iframe>
                 </div>
                 <div class="panel-footer">
                     <span class="label label-info">{{ posts[0].category }}</span>
@@ -23,7 +23,7 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <iframe src="{{ posts[1].url }}" frameborder="0"></iframe>
+                    <iframe class="panel-iframe" src="{{ posts[1].url }}" frameborder="0"></iframe>
                 </div>
                 <div class="panel-footer">
                     <span class="label label-info">{{ posts[1].category }}</span>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <h3>这就是我</h3>
+            <h3>About me</h3>
             <img alt="" class="avatar" data-user="1059877" height="230" src="https://avatars0.githubusercontent.com/u/1059877?v=2&amp;s=460" width="230">
             <p>
                 喜欢编码，喜欢台球，喜欢游泳...

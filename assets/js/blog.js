@@ -8,6 +8,10 @@
             var iframeSrc = $(e.currentTarget).attr('data-url');
             iframe.attr('src', iframeSrc);
         });
+        iframe.on('load', function(){
+            var height = $(iframe[0].contentDocument).height();
+            iframe.css('height', height);
+        });
     });
 
 }());
