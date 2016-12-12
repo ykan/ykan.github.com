@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>子进程ENOENT错误</title><link rel="stylesheet" href="./assets/markdown.css?t=1481527632051"><link rel="stylesheet" href="./assets/highlight.css?t=1481527632051"><link rel="stylesheet" href="./assets/main.css?t=1481527632051"></head><body><div class="g-nav"><ul class="g-nav-list"><li class="J_navItem nav-item" data-tab-size="0" data-url="index.html"><a class="nav-link nav-title-0" href="./index.html?t=1481527631667" title="ykan's world" data-keywords="ykan's world" style="margin-left: 0px">ykan's world</a></li><li class="J_navItem nav-item" data-tab-size="1" data-url="common-index.html"><a class="nav-link nav-title-1" href="./common-index.html?t=1481527631668" title="编程感想" data-keywords="编程感想" style="margin-left: 10px">编程感想</a></li><li class="J_navItem nav-item" data-tab-size="1" data-url="nodejs-index.html"><a class="nav-link nav-title-1" href="./nodejs-index.html?t=1481527631668" title="ykan's world" data-keywords="ykan's world" style="margin-left: 10px">ykan's world</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="nodejs-1.child_process.md.html"><a class="nav-link nav-sub" href="./nodejs-1.child_process.md.html?t=1481527631669" title="子进程ENOENT错误" data-keywords="子进程ENOENT错误,ENOENT,main.js,node main.js,child_process.js,node main.js,shell: true" style="margin-left: 20px">子进程ENOENT错误</a></li></ul></div><div class="g-doc markdown-body"><h1 id="enoent">子进程ENOENT错误</h1>
+<blockquote>
+  <p>Error: spawn ENOENT</p>
+</blockquote>
+<p><code>ENOENT</code>: No such directory entry</p>
+<h2 id="">示例代码</h2>
+<p><code>main.js</code>:</p>
+<pre><code>'use strict';
+const spawn = require('child_process').spawn;
+function runCommand(commandStr, args, cwd) {
+  console.log(`command:${commandStr} ${args.join(' ')}`);
+  let command = spawn(commandStr, args, {
+    cwd: cwd
+  });
+  return new Promise((resolve, reject) =&gt; {
+    command.on('close', code =&gt; {
+      resolve(code);
+    });
+  });
+}
+...
+runCommand('git', ['status']);
+</code></pre>
+<p>两种环境下，执行：</p>
+<ul>
+<li><code>node main.js</code>, 正常运行</li>
+<li>在koa的中间件里执行，pm2管理进程，则会出现以下情况：</li>
+</ul>
+<pre><code>Error: spawn git ENOENT
+    at exports._errnoException (util.js:1026:11)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:193:32)
+    at onErrorNT (internal/child_process.js:359:16)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:122:9)
+</code></pre>
+<p>断点到<code>child_process.js</code>发现，直接使用<code>node main.js</code>，会带有参数<code>shell: true</code>，加上这个参数以后代码执行正常。</p>
+<blockquote>
+  <p>未完待续~</p>
+</blockquote><div class="g-footer">@ykan's world</div></div><script src="./assets/jquery.js?t=1481527632051"></script><script src="./assets/highlight.js?t=1481527632051"></script><script src="./assets/main.js?t=1481527632051"></script></body></html>
