@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="keywords" content="ENOENTmain.jsnode main.jschild_process.jsnode main.jsshell: true"><title>子进程ENOENT错误</title><link rel="stylesheet" href="//oi9jtow2h.qnssl.com/a/cldoc/0.3.4/cldoc-atelier-estuary-light.css"></head><body><div class="g-doc markdown-body"><h1 id="enoent">子进程ENOENT错误</h1>
+<blockquote>
+  <p>Error: spawn ENOENT</p>
+</blockquote>
+<p><code>ENOENT</code>: No such directory entry</p>
+<h2 id="">示例代码</h2>
+<p><code>main.js</code>:</p>
+<pre><code>'use strict';
+const spawn = require('child_process').spawn;
+function runCommand(commandStr, args, cwd) {
+  console.log(`command:${commandStr} ${args.join(' ')}`);
+  let command = spawn(commandStr, args, {
+    cwd: cwd
+  });
+  return new Promise((resolve, reject) =&gt; {
+    command.on('close', code =&gt; {
+      resolve(code);
+    });
+  });
+}
+...
+runCommand('git', ['status']);
+</code></pre>
+<p>两种环境下，执行：</p>
+<ul>
+<li><code>node main.js</code>, 正常运行</li>
+<li>在koa的中间件里执行，pm2管理进程，则会出现以下情况：</li>
+</ul>
+<pre><code>Error: spawn git ENOENT
+    at exports._errnoException (util.js:1026:11)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:193:32)
+    at onErrorNT (internal/child_process.js:359:16)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:122:9)
+</code></pre>
+<p>断点到<code>child_process.js</code>发现，直接使用<code>node main.js</code>，会带有参数<code>shell: true</code>，加上这个参数以后代码执行正常。</p>
+<blockquote>
+  <p>未完待续~</p>
+</blockquote>
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="./coding-nodejs.ignore-1.child_process_enoent.md.html" data-title="子进程ENOENT错误" data-url="./coding-nodejs.ignore-1.child_process_enoent.md.html"></div>
+<script>var duoshuoQuery = {short_name: 'ykan'};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script><div class="g-footer">@ykan's world</div></div><div class="g-nav"><ul class="g-nav-list"><li class="J_navItem nav-item" data-tab-size="0" data-url="index.html"><a class="nav-link nav-title-0" href="./index.html" title="ykan's world" data-keywords="ykan's world,编码,心理学,时间管理" style="margin-left: 0px">ykan's world</a></li><li class="J_navItem nav-item" data-tab-size="1" data-url="coding-index.html"><a class="nav-link nav-title-1" href="./coding-index.html" title="编程感想" data-keywords="编程感想,心流" style="margin-left: 10px">编程感想</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="coding-1.nodejs.md.html"><a class="nav-link nav-sub" href="./coding-1.nodejs.md.html" title="NodeJS知识" data-keywords="NodeJS知识" style="margin-left: 20px">NodeJS知识</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="coding-2.docker.md.html"><a class="nav-link nav-sub" href="./coding-2.docker.md.html" title="Hey, Docker" data-keywords="Hey, Docker" style="margin-left: 20px">Hey, Docker</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="coding-3.code-project.md.html"><a class="nav-link nav-sub" href="./coding-3.code-project.md.html" title="代码工程" data-keywords="代码工程" style="margin-left: 20px">代码工程</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="coding-4.unit-test.md.html"><a class="nav-link nav-sub" href="./coding-4.unit-test.md.html" title="单元测试" data-keywords="单元测试" style="margin-left: 20px">单元测试</a></li><li class="J_navItem nav-item" data-tab-size="1" data-url="lasted-index.html"><a class="nav-link nav-title-1" href="./lasted-index.html" title="最近文档" data-keywords="最近文档" style="margin-left: 10px">最近文档</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="lasted-1.doc-tool-tag.md.html"><a class="nav-link nav-sub" href="./lasted-1.doc-tool-tag.md.html" title="自定义的Markdown" data-keywords="自定义的Markdown,json,example.json,&quot;{{filename}}&quot;,models,&quot;{{}}&quot;,渲染结果" style="margin-left: 20px">自定义的Markdown</a></li><li class="J_navItem nav-item" data-tab-size="1" data-url="life-index.html"><a class="nav-link nav-title-1" href="./life-index.html" title="生活" data-keywords="生活" style="margin-left: 10px">生活</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="life-1.time.md.html"><a class="nav-link nav-sub" href="./life-1.time.md.html" title="时间管理" data-keywords="时间管理" style="margin-left: 20px">时间管理</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="life-2.psychology.md.html"><a class="nav-link nav-sub" href="./life-2.psychology.md.html" title="心理学" data-keywords="心理学" style="margin-left: 20px">心理学</a></li><li class="J_navItem nav-item" data-tab-size="1" data-url="nodejs-index.html"><a class="nav-link nav-title-1" href="./nodejs-index.html" title="NodeJS知识" data-keywords="NodeJS知识" style="margin-left: 10px">NodeJS知识</a></li><li class="J_navItem nav-item" data-tab-size="2" data-url="nodejs-1.child_process.md.html"><a class="nav-link nav-sub" href="./nodejs-1.child_process.md.html" title="子进程ENOENT错误" data-keywords="子进程ENOENT错误,ENOENT,main.js,node main.js,child_process.js,node main.js,shell: true" style="margin-left: 20px">子进程ENOENT错误</a></li></ul></div><script src="//oi9jtow2h.qnssl.com/a/cldoc/0.3.4/cldoc.js"></script></body></html>
